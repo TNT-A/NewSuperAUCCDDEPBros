@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://doe0c6ojamtla"]
+
+[ext_resource type="Script" uid="uid://c87qjgorurun1" path="res://bottom_block.gd" id="1_erqcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvpgs"]
+size = Vector2(16, 3)
+
+[node name="BottomBlock" type="Area2D"]
+script = ExtResource("1_erqcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0.5)
+shape = SubResource("RectangleShape2D_tvpgs")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

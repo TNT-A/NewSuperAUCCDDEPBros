@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cov187muaqq80"]
+
+[ext_resource type="Script" uid="uid://c3ddd36cesytw" path="res://ouchy_zone.gd" id="1_tjmfb"]
+
+[node name="OuchyZone" type="Area2D" groups=["HURT", "KILL"]]
+script = ExtResource("1_tjmfb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

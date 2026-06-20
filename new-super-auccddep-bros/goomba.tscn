@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv08j1isw1ske"]
+
+[ext_resource type="PackedScene" uid="uid://cov187muaqq80" path="res://ouchy_zone.tscn" id="1_jke6y"]
+[ext_resource type="Script" uid="uid://dlejx5v7g04lk" path="res://goomba.gd" id="1_yj1s3"]
+[ext_resource type="Texture2D" uid="uid://dowt45s8w3a7a" path="res://Assets/goombest.png" id="2_lwfim"]
+[ext_resource type="Script" uid="uid://dpnkuab6e6jvv" path="res://stompy_zone.gd" id="3_lwfim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jke6y"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwfim"]
+size = Vector2(20, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj1s3"]
+size = Vector2(18, 11)
+
+[node name="Goomba" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_yj1s3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_lwfim")
+
+[node name="OuchyZone" parent="." instance=ExtResource("1_jke6y")]
+kills_you = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuchyZone"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_jke6y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_lwfim")
+
+[node name="StompyZone" type="Area2D" parent="."]
+script = ExtResource("3_lwfim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompyZone"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_yj1s3")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_shape_entered" from="StompyZone" to="StompyZone" method="_on_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

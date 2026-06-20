@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cftx0q83sk7dg"]
+
+[ext_resource type="PackedScene" uid="uid://cov187muaqq80" path="res://ouchy_zone.tscn" id="1_gvsd5"]
+[ext_resource type="Script" uid="uid://dh2fmwscohc87" path="res://mushroom.gd" id="1_pl5ep"]
+[ext_resource type="Texture2D" uid="uid://cxdm2rrlgsorn" path="res://Assets/shrooms.png" id="2_ke5i0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pl5ep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ke5i0"]
+radius = 4.1231055
+
+[node name="Mushroom" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_pl5ep")
+
+[node name="OuchyZone" parent="." instance=ExtResource("1_gvsd5")]
+kills_you = false
+hurts_you = false
+helps_you = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuchyZone"]
+shape = SubResource("CircleShape2D_pl5ep")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.009, 0.009)
+texture = ExtResource("2_ke5i0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_ke5i0")
+
+[connection signal="area_shape_entered" from="OuchyZone" to="." method="_on_ouchy_zone_area_shape_entered"]

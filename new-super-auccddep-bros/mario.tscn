@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct0ylxag2eap1"]
+
+[ext_resource type="Script" uid="uid://dsx76svv0v1d3" path="res://mario.gd" id="1_wrvex"]
+[ext_resource type="Texture2D" uid="uid://cww13lhu14cm6" path="res://Assets/Screenshot 2026-06-19 192135.png" id="2_wrvex"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrvex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrvex"]
+radius = 14.0
+
+[node name="Mario" type="CharacterBody2D" node_paths=PackedStringArray("host") groups=["Mario"]]
+script = ExtResource("1_wrvex")
+host = NodePath(".")
+speed = 200
+FALL_GRAVITY = 2000.0
+JUMP_POWER = 700.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wrvex")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.36499977, 3.773373)
+scale = Vector2(0.06, 0.051)
+texture = ExtResource("2_wrvex")
+offset = Vector2(0, -64)
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Mario"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" groups=["Mario"]]
+shape = SubResource("CircleShape2D_wrvex")

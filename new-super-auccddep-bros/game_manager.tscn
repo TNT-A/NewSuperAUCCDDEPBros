@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6fivfxd8a0tg"]
+
+[ext_resource type="PackedScene" uid="uid://cd1a30gv2lp3a" path="res://world.tscn" id="1_70yv6"]
+[ext_resource type="Script" uid="uid://dy4f4ppvge5mu" path="res://game_manager.gd" id="1_d5upp"]
+[ext_resource type="PackedScene" uid="uid://ct0ylxag2eap1" path="res://mario.tscn" id="2_smx3j"]
+[ext_resource type="Script" uid="uid://dbtklfbq834db" path="res://camera_2d.gd" id="3_o2178"]
+[ext_resource type="PackedScene" uid="uid://dv08j1isw1ske" path="res://goomba.tscn" id="5_vk86k"]
+[ext_resource type="Texture2D" uid="uid://bv4r8awtavctm" path="res://Assets/cute_baby_yoda.jpg" id="6_shwjl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk86k"]
+size = Vector2(383, 205)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eakoi"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8jrwq"]
+font_color = Color(1, 1, 1, 0.078431375)
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_d5upp")
+
+[node name="World" parent="." instance=ExtResource("1_70yv6")]
+
+[node name="Mario" parent="." instance=ExtResource("2_smx3j")]
+position = Vector2(98, 115)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+script = ExtResource("3_o2178")
+
+[node name="Goomba" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(438, 312)
+
+[node name="Goomba2" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(687, 309)
+
+[node name="Goomba3" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(830, 311)
+
+[node name="Goomba4" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(899, 309)
+
+[node name="Goomba5" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1310, 184)
+
+[node name="Goomba6" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1365, 184)
+
+[node name="Goomba7" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1556, 310)
+
+[node name="Goomba8" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1634, 308)
+
+[node name="Goomba9" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1793, 306)
+
+[node name="Goomba10" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1891, 308)
+
+[node name="Goomba11" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(1925, 308)
+
+[node name="Goomba12" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(2818, 306)
+
+[node name="Goomba13" parent="." instance=ExtResource("5_vk86k")]
+position = Vector2(2867, 305)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3521.5, 207.5)
+shape = SubResource("RectangleShape2D_vk86k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 90.0
+offset_top = 21.0
+offset_right = 579.0
+offset_bottom = 88.0
+text = "WOAH!!!! YOU WIN :D"
+label_settings = SubResource("LabelSettings_eakoi")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 76.0
+offset_top = 110.0
+offset_right = 376.0
+offset_bottom = 310.0
+texture = ExtResource("6_shwjl")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 429.0
+offset_top = 201.0
+offset_right = 469.0
+offset_bottom = 224.0
+text = "Totally not 
+catering "
+label_settings = SubResource("LabelSettings_8jrwq")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
